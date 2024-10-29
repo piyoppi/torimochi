@@ -10,6 +10,13 @@
 
   const { copy, copied } = useClipboard({ copiedDuring: 10000 })
 
+  const allowedHost = [
+    "amazon.co.jp",
+    "amazon.com",
+    "www.amazon.co.jp",
+    "www.amazon.com"
+  ]
+
   const handleInput = () => {
     if (timerId !== null) {
       clearTimeout(timerId)
@@ -22,6 +29,10 @@
       try {
         result.value = ""
         const parsed = new URL(url.value)
+
+        if (!allowedHost.includes(parsed.host)) {
+          errorMessage.value = "このURLは対応していません"
+        }
 
         const filtered = parsed.pathname
           .split("/")
