@@ -4,6 +4,7 @@ import Icons from 'unplugin-icons/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: 'torimochi',
   plugins: [
     vue(),
     Icons()
